@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gradient-start: #4f46e5;
+  --gradient-end: #7c3aed;
+  --primary-gradient: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 min-h-screen flex flex-col;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg 
+           hover:from-indigo-700 hover:to-purple-700 transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600;
+  }
+
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+  }
+
+  .vision-card {
+    @apply transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
+  }
+}
+
+.font-geist-mono {
+  font-family: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  letter-spacing: -0.03em;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--gradient-start);
+  animation: spin 1s ease-in-out infinite;
+}
+
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal > div {
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal.visible > div {
+  transform: translateY(0);
+}
+
+@keyframes glint {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+.bg-gradient-button {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-gradient);
+}
+
+.bg-gradient-button:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-100%) rotate(45deg);
+  animation: glint 1s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite ease-in-out;
+} 
