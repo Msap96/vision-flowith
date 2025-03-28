@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -7,7 +8,16 @@ const Header = () => {
     <header className="bg-white border-b border-gray-100">
       <div className="container py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center space-x-3">
+            <div className="relative w-8 h-8">
+              <Image
+                src="/images/icon.png"
+                alt="Vision Flowith Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
+            </div>
             <h1 className="text-2xl font-bold gradient-text">Vision Flowith</h1>
           </div>
 
